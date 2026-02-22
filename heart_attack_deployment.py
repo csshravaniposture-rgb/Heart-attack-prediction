@@ -30,7 +30,6 @@ input_data=pd.DataFrame({
    "Systolic_blood_pressure":[Systolic_blood_pressure],
    "Diastolic_blood_pressure":[Diastolic_blood_pressure],
    "Blood_sugar":[Blood_sugar],
-   "CK-MB":[CK-MB],
    "Troponin":[Troponin],
    "Result":[Result]
 })
