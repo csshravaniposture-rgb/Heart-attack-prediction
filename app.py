@@ -1,41 +1,35 @@
 import streamlit as st
-import joblib
 import pandas as pd
+import joblib
 
 # Load model
-model = joblib.load("dtc_model.pkl")
+model = joblib.load("dt_model (1).pkl")
 
-st.title("HEART ATTACK PREDICTION")
+st.title("Heart Disease Prediction App")
 
-Age = st.number_input("Age", min_value=1, max_value=120)
-Gender = st.selectbox("Gender", ["Male", "Female"])
-Heart_rate = st.number_input("Heart Rate")
-Systolic_blood_pressure = st.number_input("Systolic Blood Pressure")
-Diastolic_blood_pressure = st.number_input("Diastolic Blood Pressure")
-Blood_sugar = st.number_input("Blood Sugar")
-Troponin = st.number_input("Troponin")
+# Inputs
+age = st.number_input("Age")
+gender = st.number_input("Gender (0 = Female, 1 = Male)")
+heart_rate = st.number_input("Heart rate")
+systolic_bp = st.number_input("Systolic blood pressure")
+diastolic_bp = st.number_input("Diastolic blood pressure")
+blood_sugar = st.number_input("Blood sugar")
+ck_mb = st.number_input("CK-MB")
+troponin = st.number_input("Troponin")
 
-Gender = 1 if Gender == "Male" else 0
-
+# Create dataframe (Column names MUST match exactly)
 input_data = pd.DataFrame({
-    "Age": [Age],
-    "Gender": [Gender],
-    "Heart_rate": [Heart_rate],
-    "Systolic_blood_pressure": [Systolic_blood_pressure],
-    "Diastolic_blood_pressure": [Diastolic_blood_pressure],
-    "Blood_sugar": [Blood_sugar],
-    "Troponin": [Troponin]
+    "Age": [age],
+    "Gender": [gender],
+    "Heart rate": [heart_rate],
+    "Systolic blood pressure": [systolic_bp],
+    "Diastolic blood pressure": [diastolic_bp],
+    "Blood sugar": [blood_sugar],
+    "CK-MB": [ck_mb],
+    "Troponin": [troponin]
 })
 
+# Prediction
 if st.button("Predict"):
-    try:
-        prediction = model.predict(input_data)[0]
-
-        if prediction == 1:
-            st.error(" High Risk of Heart Attack")
-        else:
-            st.success(" Low Risk of Heart Attack")
-
-    except Exception as e:
-        st.error(f"Error: {e}")
-        st.write("Check if feature names and order match training data.")
+    prediction = model.predict(input_data)[0]
+    st.success(f"Prediction Result: {prediction}")
