@@ -10,7 +10,7 @@ Original file is located at
 import streamlit as st
 import joblib
 import pandas as pd
-model=joblib.load("dtc_model.pkl(1)")
+model=joblib.load("dtc model.pkl(1)")
 
 st.title("HEART ATTACK !")
 Age=st.number_input("Age")
