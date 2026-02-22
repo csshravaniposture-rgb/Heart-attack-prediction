@@ -1,35 +1,35 @@
 import streamlit as st
+import pandas as pd
 import joblib
-import pandas as pd 
-model=joblib.load("dtc_model.pkl")
 
-st.title("HEART ATTACK !")
-Age=st.number_input("Age")
-Gender=st.number_input("Gender")
-Heart_rate=st.number_input("Heart rate")
-Systolic_blood_pressure=st.number_input("Systolic blood pressure")
-Diastolic_blood_pressure=st.number_input("Diastolic blood pressure")
-Blood_sugar=st.number_input("Blood sugar")
-CK-MB=st.number_input("CK-MB")
-Troponin=st.number_input("Troponin")
-Result=st.number_input("Result")
+# Load model
+model = joblib.load("dt_model (1).pkl")
 
+st.title("Heart Disease Prediction App")
 
-input_data=pd.DataFrame({
-   "Age":[Age],
-   "Gender":[Gender],
-   "Heart_rate":[Heart_rate],
-   "Systolic_blood_pressure":[Systolic_blood_pressure],
-   "Diastolic_blood_pressure":[Diastolic_blood_pressure],
-   "Blood_sugar":[Blood_sugar],
-   "CK-MB":[CK-MB],
-   "Troponin":[Troponin],
-   "Result":[Result]
+# Inputs
+age = st.number_input("Age")
+gender = st.number_input("Gender (0 = Female, 1 = Male)")
+heart_rate = st.number_input("Heart rate")
+systolic_bp = st.number_input("Systolic blood pressure")
+diastolic_bp = st.number_input("Diastolic blood pressure")
+blood_sugar = st.number_input("Blood sugar")
+ck_mb = st.number_input("CK-MB")
+troponin = st.number_input("Troponin")
+
+# Create dataframe (Column names MUST match exactly)
+input_data = pd.DataFrame({
+    "Age": [age],
+    "Gender": [gender],
+    "Heart rate": [heart_rate],
+    "Systolic blood pressure": [systolic_bp],
+    "Diastolic blood pressure": [diastolic_bp],
+    "Blood sugar": [blood_sugar],
+    "CK-MB": [ck_mb],
+    "Troponin": [troponin]
 })
 
-if st.button("predict"):
-  prediction=model.predict(input_data)[0]
-if prediction=="Positive":
-    st.success("Positive")
-else:
-    st.error("Negative")
+# Prediction
+if st.button("Predict"):
+    prediction = model.predict(input_data)[0]
+    st.success(f"Prediction Result: {prediction}")
