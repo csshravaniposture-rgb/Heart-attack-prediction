@@ -34,8 +34,7 @@ input_data = pd.DataFrame({
     "Troponin":[Troponin],
     "Result":[Result]
 })
-
- if prediction == 1:
+if prediction == 1:
             st.error("High Risk of Heart Attack")
         else:
             st.success(" Low Risk of Heart Attack")
