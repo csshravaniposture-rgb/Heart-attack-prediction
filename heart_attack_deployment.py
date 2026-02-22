@@ -19,7 +19,6 @@ Heart_rate=st.number_input("Heart rate")
 Systolic_blood_pressure=st.number_input("Systolic blood pressure")
 Diastolic_blood_pressure=st.number_input("Diastolic blood pressure")
 Blood_sugar=st.number_input("Blood sugar")
-CK-MB=st.number_input("CK-MB")
 Troponin=st.number_input("Troponin")
 Result=st.number_input("Result")
 
