@@ -35,9 +35,9 @@ input_data = pd.DataFrame({
     "Result":[Result]
 })
 if prediction == 1:
-            st.error("High Risk of Heart Attack")
-        else:
-            st.success(" Low Risk of Heart Attack")
+      st.error("High Risk of Heart Attack")
+else:
+     st.success(" Low Risk of Heart Attack")
 
     except Exception as e:
         st.error(f"Error: {e}")
