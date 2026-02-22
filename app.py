@@ -38,7 +38,7 @@ input_data = pd.DataFrame({
 if st.button("Predict"):
     prediction = model.predict(input_data)[0]
 
-    if prediction == "Positive":
+    if prediction == 1:
         st.success("Positive")
     else:
         st.error("Negative")
